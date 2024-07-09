@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from "next/navigation";
 import Link from 'next/link';
 import style from "./MainContent.module.css"
 import Cookies from 'universal-cookie';
 
-export default function MainContent() {
+function MainContent() {
   // Get values from query
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
@@ -45,38 +45,47 @@ export default function MainContent() {
     });
     }
   };
-  return (<>
-    <div className={style.backButton}>
-      <Link 
-          href={{
-              pathname:"/", 
-              query:{
-                currentPage: page,
-                index: index
-              }
-          }}
-      >
-        <img src={"back.webp"} className={style.backButtonImage}></img>
-      </Link>
-    </div>
+  return (
+    <>
+      <div className={style.backButton}>
+        <Link 
+            href={{
+                pathname:"/", 
+                query:{
+                  currentPage: page,
+                  index: index
+                }
+            }}
+        >
+          <img src={"back.webp"} className={style.backButtonImage}></img>
+        </Link>
+      </div>
 
-    <div onClick={handleClick} className={style.MainContent}>
-      {images.length > 0 && (
-            <div 
-              style={{
-                backgroundImage:`url(${name}/${images[page]})`,  backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                width: '100%',
-                height: '100%',
-                display: 'grid',
-                gridTemplateRows:'70% 30%'
-              }}  
-              alt="Current Image">
-                <div></div>
-                <div className={style.TextBox}>{texts[page]}</div>
-            </div>
-      )}
-    </div>
-  </>);
+      <div onClick={handleClick} className={style.MainContent}>
+        {images.length > 0 && (
+              <div 
+                style={{
+                  backgroundImage:`url(${name}/${images[page]})`,  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  width: '100%',
+                  height: '100%',
+                  display: 'grid',
+                  gridTemplateRows:'70% 30%'
+                }}  
+                alt="Current Image">
+                  <div></div>
+                  <div className={style.TextBox}>{texts[page]}</div>
+              </div>
+        )}
+      </div>
+    </>);
+}
+
+export default function wrapper(){
+  return(
+    <Suspense>
+      <MainContent/>
+    </Suspense>
+  )
 }

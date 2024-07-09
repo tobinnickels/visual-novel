@@ -3,7 +3,7 @@ import CharacterLink from './CharacterLink.jsx';
 import Character from './Character.js';
 import Cookies from 'universal-cookie';
 import { useSearchParams } from "next/navigation";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import style from "./Home.module.css"
 
 /**
@@ -16,8 +16,6 @@ export default function Home() {
   const cookies = new Cookies(null, { path: '/' });
   const [characters, setCharacters] = useState([]);
 
-
-  const searchParams = useSearchParams();
   useEffect(() => {    
     fetch(`./DefaultCharacters.json`).then(response => response.json()).then(defaults => {
       if(cookies.get('visual-novel-characters') === undefined){
@@ -35,7 +33,10 @@ export default function Home() {
   let i = 0;
   const characterLinks = characters.map((c)=><CharacterLink key={i} character={c} index={i++}/>);
   
-  return (<><h1>Select Character</h1>{characters.length > 0 && (<ul className={style.characterList}>{characterLinks}</ul>)}</>);
+  return (<>
+      <h1>Select Character</h1>
+      {characters.length > 0 && (<ul className={style.characterList}>{characterLinks}</ul>)}
+  </>);
 }
 
 function updateCharacters(local_characters,defaults){
