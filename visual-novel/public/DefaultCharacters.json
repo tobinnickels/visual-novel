@@ -1,0 +1,4 @@
+[
+    {"name":"CharacterOne","unlocked":true,"currentPage":0,"maxPage":2},
+    {"name":"CharacterTwo","unlocked":false,"currentPage":0,"maxPage":1}
+]
