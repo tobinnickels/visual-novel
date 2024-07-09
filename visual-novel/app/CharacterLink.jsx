@@ -2,7 +2,7 @@ import Link from 'next/link';
 import style from './CharacterLink.module.css'
 
 export default function CharacterLink({character,index}){
-    const img_path = (character.unlocked)? `${character.name}/${character.name}.png` : "locked.png";
+    const img_path = (character.unlocked)? `./${character.name}/${character.name}.png` : "./locked.png";
     return(
         // Check if character is unlocked
         (character.unlocked)?

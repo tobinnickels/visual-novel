@@ -65,7 +65,7 @@ function MainContent() {
         {images.length > 0 && (
               <div 
                 style={{
-                  backgroundImage:`url(${name}/${images[page]})`,  backgroundPosition: 'center',
+                  backgroundImage:`url(./${name}/${images[page]})`,  backgroundPosition: 'center',
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                   width: '100%',
