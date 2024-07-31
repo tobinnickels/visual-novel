@@ -46,7 +46,7 @@ function updateCharacters(local_characters,defaults){
   }
   if(updatedCharacters.length < defaults.length){
     for (let index = updatedCharacters.length; index < defaults.length; index++) {
-      updatedCharacters.push(defaults[index]);z
+      updatedCharacters.push(defaults[index]);
     }
   }
   return updatedCharacters;

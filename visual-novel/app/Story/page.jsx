@@ -57,7 +57,7 @@ function MainContent() {
                 }
             }}
         >
-          <img src={"back.webp"} className={style.backButtonImage}></img>
+          <img src={"/back.webp"} className={style.backButtonImage}></img>
         </Link>
       </div>
 
@@ -71,12 +71,38 @@ function MainContent() {
                   width: '100%',
                   height: '100%',
                   display: 'grid',
-                  gridTemplateRows:'70% 30%'
+                  gridTemplateRows:'65% 5% 30%'
                 }}  
                 alt="Current Image">
                   <div></div>
-                  <div className={style.TextBox}>{texts[page]}</div>
+                    <div style={{
+                    backgroundImage:`url(./name_plate.png)`,  backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    width: 'fit-content',
+                    height: 'auto',
+                    paddingLeft: '1%',
+                    paddingRight: '1%'
+                  }}  >
+                  <div className={style.textOverImage}>
+                    <img src='leaf_1.png'></img>{name}<img src='leaf_2.png'></img>
+                    </div>
+                  </div>
+                  <div className={style.bottomContainer}>
+                    <div className={style.textBox}>{texts[page]}</div>                      
+                    <div style={{    
+                            width: "60vw",
+                            height: "25vh",
+                            backgroundImage: "url(border.png)",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                            position: "absolute",
+                            top: "0",
+                            left: "0"
+                      }}>
+                    </div>
               </div>
+        </div>
         )}
       </div>
     </>);
